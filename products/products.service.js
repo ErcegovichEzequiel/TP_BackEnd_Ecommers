@@ -1,4 +1,4 @@
-const { seleccionarProductoPorId, insertarProducto, eliminarProducto } = require("./products.repository")
+const { seleccionarProductoPorId, insertarProducto, eliminarProducto, seleccionarTodosLosProductos } = require("./products.repository")
 const { validacionCargaProducto } = require("./utils/validationProducts.utils")
 
 const createProduct = async (product) => {
@@ -66,5 +66,17 @@ const modificarProducto = async (pid) => {
     }
 }
 
+const buscarProducto = async () => {
+    try {
+        const productos = await seleccionarTodosLosProductos()
+        if (productos.length === 0) {
+            throw { status: 404, message: 'PRODUCTOS NO ENCONTRADOS' }
+        }
+        return { ok: true, status: 200, message: 'PRODUCTOS ENCONTRADOS', productos: productos }
 
-module.exports = { createProduct, obtenerProductoPorId, eliminarProductoPorId, modificarProducto }
+    } catch (error) {
+        throw error
+    }
+}
+
+module.exports = { createProduct, obtenerProductoPorId, eliminarProductoPorId, modificarProducto, buscarProducto }

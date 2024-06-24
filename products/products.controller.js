@@ -1,4 +1,4 @@
-const { createProduct, obtenerProductoPorId, eliminarProductoPorId, modificarProducto } = require("./products.service")
+const { createProduct, obtenerProductoPorId, eliminarProductoPorId, modificarProducto, buscarProducto } = require("./products.service")
 
 const createProductController = async (req, res) => { // Controlador de creacion de producto.
     const product = req.body // Trae el producto del body. El body de la peticion tiene email, password, passwordConfirm, edad, nombre, apellido, que trajo del front.
@@ -55,5 +55,15 @@ const putProduct = async (req, res) => {
     }
 }
 
+const getAllProducts = async (req, res) => {
+    try {
+        const result = await buscarProducto()
+        res.status(200).json({ result })
+    }
+    catch (error) {
+        res.status(error.status).json({ error })
+    }
+}
 
-module.exports = { createProductController, getProductByIdController, deleteProductById, putProduct }
+
+module.exports = { createProductController, getProductByIdController, deleteProductById, putProduct, getAllProducts }
