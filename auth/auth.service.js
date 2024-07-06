@@ -48,10 +48,9 @@ const loginService = async (usuario) => {
         if (!esCorrecta) {
             throw { status: 400, message: 'ERROR: Contraseña incorrecta' }
         } else {
-            const token = jwt.sign({ email }, process.env.JWT_SECRET_KET, { expiresIn: '1h' })
+            const token = jwt.sign({ email, user_id: usuarioExistente.id }, process.env.JWT_SECRET_KET, { expiresIn: '1h' }) //genera el token para el usuario logueado
             return token
         }
-
     }
     catch (error) {
         if (error.status) {

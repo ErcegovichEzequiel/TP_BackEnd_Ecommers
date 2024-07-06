@@ -49,3 +49,4 @@ const validacionUsuaruioLogin = (email, password) => {
 }
 
 module.exports = { validacionUsuaruioRegistro, validacionUsuaruioLogin }
+
