@@ -1,4 +1,4 @@
-const { query } = require("express")
+const { query } = require('../config/connectio.sql')
 
 const obtenerOCrearCarrito = async (user_id) => {
     try {
