@@ -7,6 +7,7 @@ const verifyTokenMiddlewar = (req, res, next) => {
     if (!validacionExistencia(token) || !isNaN(token) || token === undefined || token === null) {
         res.status(400).json({ status: 400, ok: false, message: "No autorizado, debe proporcionar un token valido" })
     }
+
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, datos) => { //valida el token
         console.log(datos)
         if (error) { //si el token es invalido devuelve un error

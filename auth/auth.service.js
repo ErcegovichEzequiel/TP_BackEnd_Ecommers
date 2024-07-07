@@ -1,4 +1,3 @@
-
 const { buscarUsuarioPorEmail, insertarUsuario } = require("./auth.repository")
 const { validacionUsuaruioRegistro, validacionUsuaruioLogin } = require("./utils/validationUser.util")
 const bcrypt = require('bcrypt') // libreria para encriptar el password
@@ -48,7 +47,7 @@ const loginService = async (usuario) => {
         if (!esCorrecta) {
             throw { status: 400, message: 'ERROR: Contraseña incorrecta' }
         } else {
-            const token = jwt.sign({ email, user_id: usuarioExistente.id }, process.env.JWT_SECRET_KET, { expiresIn: '1h' }) //genera el token para el usuario logueado
+            const token = jwt.sign({ email, user_id: usuarioExistente.id }, process.env.JWT_SECRET_KEY, { expiresIn: '1h' }) //genera el token para el usuario logueado
             return token
         }
     }

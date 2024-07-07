@@ -2,6 +2,7 @@ const { agregarAlCarrito } = require('./carts.service')
 
 const postCartController = async (req, res) => {
     const { product_id, cantidad } = req.body
+const user = req.user
 
     //AGREGAR LAS FUNCIONES DE VALIDAR DATOS
 

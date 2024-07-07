@@ -33,6 +33,7 @@ const verifyTokenController = (req, res) => {
         res.status(400).json({ status: 400, ok: false, message: "No autorizado, debe proporcionar un token valido" })
     }
     const esValido = jwt.verify(token, process.env.JWT_SECRET_KEY)
+    
     if (!esValido) {
         res.status(401).json({ status: 401, ok: false, message: "No autorizado, token invalido" })
     }
