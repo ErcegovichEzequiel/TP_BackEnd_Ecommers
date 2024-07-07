@@ -9,7 +9,7 @@ const verifyTokenMiddlewar = (req, res, next) => {
     }
 
     jwt.verify(token, process.env.JWT_SECRET_KEY, (error, datos) => { //valida el token
-        console.log(datos)
+
         if (error) { //si el token es invalido devuelve un error
             res.status(401).json({ status: 401, ok: false, message: "No autorizado, token invalido" })
         }

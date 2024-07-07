@@ -4,13 +4,6 @@ const { validacionCargaProducto } = require("./utils/validationProducts.utils")
 const createProduct = async (product) => {
     try {
         validacionCargaProducto(product) // valida que los datos sean correctos, se pasa el objeto sin desestructurar para que pueda informar si cargo mas propiedades de las que se piden. Si le paso solo la desestructuracion, no tengo como informar si hay mas propiedades de las solicitadas.
-
-        // const productoExistente = await seleccionarProductoPorId(product.codigo) // busca si el producto ya existe en la base de datos
-
-        // if (productoExistente) {
-        //     throw { status: 400, message: 'ERROR: Producto ya existente' }
-        // }
-
         const resultado = await insertarProducto(product) // inserta el producto en la base de datos
         if (resultado) {
             return { ok: true, message: 'Se inserto nuevo producto', id: resultado.insertId, producto: product }

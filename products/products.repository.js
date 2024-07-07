@@ -31,7 +31,7 @@ const insertarProducto = async ({ titulo, precio, descripcion, stock, codigo }) 
         return resultado
     }
     catch (error) {
-        throw { status: 500, message: 'ERROR INTERNO EN EL SERVIDOR' } // retorna el error interno en la base de datos
+        throw { status: 500, message: 'ERROR INTERNO EN EL SERVIDORrrrrr' } // retorna el error interno en la base de datos
     }
 }
 
