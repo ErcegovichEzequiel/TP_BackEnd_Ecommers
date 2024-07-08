@@ -34,5 +34,32 @@ const agregarAlCarrito = async (cart_id, product_id, cantidad) => {
     }
 }
 
+const obtenerCarritoDetallado = async (cart_id) => {
+    try {
+        const obtenerCarritoStr = `
+        SELECT productos.*, carritoProductos.cantidad FROM productos
+        productos JOIN carrito_productos carritoProductos 
+        ON
+        productos.id = carritoProductos.product_id
+        WHERE
+        carritoProductos.cart_id = ?
+        `
+        const carrito = await query(obtenerCarritoStr, [cart_id])
+        return carrito
+    }
+    catch (error) {
+        throw { status: 500, message: 'ERROR INTERNO EN LA BASE DE DATOS' }
+    }
+}
 
-module.exports = { obtenerOCrearCarrito, agregarAlCarrito }
+const eliminarProductoDelCarrito = async (cart_id, product_id) => {
+    try {
+        const eliminarProductoStr = `DELETE FROM carrito_productos WHERE cart_id = ? AND product_id = ?`
+        await query(eliminarProductoStr, [cart_id, product_id])
+    }
+    catch (error) {
+        throw { status: 500, message: 'ERROR INTERNO EN LA BASE DE DATOS' }
+    }
+}
+
+module.exports = { obtenerOCrearCarrito, agregarAlCarrito, obtenerCarritoDetallado, eliminarProductoDelCarrito }
